@@ -5,37 +5,30 @@
 
 bool isPerm(char* s1, char* s2) {
   int l1 = strlen(s1);
-//  printf("l1 = %i\n", l1);
   int l2 = strlen(s2);
-//  printf("l2 = %i\n", l2);
   if(l1 != l2) {
     return false;
   } else {
-    int count1[255];
-    int count2[255];
+    unsigned int count[255];
     for (int i = 0; i < 255; ++i)
     {
-      count1[i] = 0;
-      count2[i] = 0;
+      count[i] = 0;
     }
 
     for (int i = 0; i < l1; ++i)
     {
-      count1[ s1[i] ]++;
+      count[ s1[i] ]++;
     }
 
     for (int i = 0; i < l2; ++i)
     {
-      count2[ s2[i] ]++;
+      count[ s2[i] ]--;
     }
 
     for (int i = 0; i < l1; ++i)
     {
       char c = s1[i];
-//      printf("c= %c\n", c);
-//      printf("count1[c] = %i\n", count1[c]);
-//      printf("count2[c] = %i\n", count2[c]);
-      if(count1[c] != count2[c]) {
+      if(count[c] != 0) {
         return false;
       }
     }
